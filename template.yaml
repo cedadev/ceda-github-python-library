@@ -61,7 +61,6 @@ spec:
           name: ${{ parameters.name }}
           owner: ${{ parameters.owner }}
           author: ${{ user.entity }}
-          repoUrl: github.com?owner=${{ parameters.owner }}&repo=${{ parameters.repositoryName }}
           description: ${{ parameters.description }}
           destination: ${{ values.repoUrl | parseRepoUrl }}
 
@@ -75,7 +74,7 @@ spec:
         allowedHosts:
           - github.com
         description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: github.com?owner=${{ parameters.owner }}&repo=${{ parameters.repositoryName }}
         defaultBranch: main
 
     - id: register
