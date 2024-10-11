@@ -18,6 +18,7 @@ spec:
         - name
         - slug
         - description
+        - visibility
       properties:
         name:
           title: Software name
@@ -39,6 +40,17 @@ spec:
           description: A brief description of the library.
           ui:options:
             rows: 5
+        visibility:
+          title: Visibility
+          type: string
+          description: The visibility of the repository
+          default: public
+          enum:
+            - public
+            - private
+          enumNames:
+            - Public (default)
+            - Private (visible only to CEDADEV organisational members on github)
 
   # Steps undertaken by backstage after completion of the template form
   steps:
@@ -65,6 +77,7 @@ spec:
           - github.com
         description: This is ${{ parameters.name }}
         repoUrl: github.com?owner=cedadev&repo=${{ parameters.slug }}
+        repoVisibility: ${{ parameters.visibility }}
         defaultBranch: main
 
     - id: register
