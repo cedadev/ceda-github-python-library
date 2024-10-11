@@ -1,0 +1,93 @@
+# CEDA Backstage GitHub Public Python Library Template
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+
+# Basic Template Information
+metadata:
+  name: ceda-github-public-python-library
+  title: CEDA GitHub Public Python Library
+  description: Create a public Python library or clilent in the CEDADEV organisation
+
+# Templated Information
+spec:
+  owner: group:default/developers
+  type: library
+  parameters:
+    - title: Basic Library Information
+      required:
+        - name
+        - owner
+        - description
+      properties:
+        name:
+          title: Software name
+          type: string
+          description: The name of the component in this software catalogue (i.e. "CEDA ServiceX Client).
+          ui:autofocus: true
+          ui:options:
+            rows: 1
+        repositoryName:
+          title: Repository Slug (Name)
+          description: The slug for the repository, (i.e. "ceda-servicex-client")
+          ui:options:
+            rows: 1
+          pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component; a GitHub group in the "cedadev" organisation (usually this will be "developers").
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: [ Group ]
+        description:
+          title: Description
+          type: string
+          description: A brief description of the library.
+          ui:options:
+            rows: 5
+
+  # Steps undertaken by backstage after completion of the template form
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+            name: Fetch Base
+      action: fetch:template
+      input:
+        url: ./github_content
+        targetPath: ./ghub
+        values:
+          name: ${{ parameters.name }}
+          owner: ${{ parameters.owner }}
+          author: ${{ user.entity }}
+          repoUrl: github.com?owner=${{ parameters.owner }}&repo=${{ parameters.repositoryName }}
+          description: ${{ parameters.description }}
+          destination: ${{ values.repoUrl | parseRepoUrl }}
+        - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        sourcePath: ./ghub
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        allowedHosts:
+          - github.com
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
+        defaultBranch: main
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  # some outputs which are saved along with the job for use in the frontend
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
