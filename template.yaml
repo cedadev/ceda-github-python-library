@@ -107,7 +107,7 @@ spec:
           items: {
             title: "Add CVE codes to prevent that vulnerability stopping deployment",
             type: string,
-            pattern: "^CVE-\d{4}-\d{4,7}$",
+            pattern: "^CVE-/d{4}-/d{4,7}$",
           }
 
   # Steps undertaken by backstage after completion of the template form
