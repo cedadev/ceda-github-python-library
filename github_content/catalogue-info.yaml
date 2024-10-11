@@ -1,11 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{ values.name | dump }}
-  description: ${{ values.description | dump }}
+  name: ${{ values.name }}
+  description: ${{ values.description }}
   annotations:
-    github.com/project-slug: ${{ values.owner }}/${{ values.repositoryName }}
+    github.com/project-slug: cedadev/${{ values.repositoryName }}
 spec:
   type: library
-  owner: ${{ values.owner }}
+  owner: ${{ values.author }}
   lifecycle: experimental

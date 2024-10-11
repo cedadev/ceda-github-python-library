@@ -1,3 +1,3 @@
-# ${{ values.name | dump }}
+# ${{ values.name  }}
 
-${{ values.description | dump }}
+${{ values.description }}

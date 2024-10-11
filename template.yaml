@@ -16,7 +16,7 @@ spec:
     - title: Basic Library Information
       required:
         - name
-        - repositoryName
+        - slug
         - description
       properties:
         name:
@@ -26,7 +26,7 @@ spec:
           ui:autofocus: true
           ui:options:
             rows: 1
-        repositoryName:
+        slug:
           title: Repository Slug (Name)
           type: string
           description: The slug for the repository, (i.e. "ceda-servicex-client")
@@ -50,10 +50,9 @@ spec:
         targetPath: ./ghub
         values:
           name: ${{ parameters.name }}
-          owner: ${{ parameters.owner }}
           author: ${{ user.entity }}
           description: ${{ parameters.description }}
-          destination: ${{ values.repoUrl | parseRepoUrl }}
+          slug: ${{ parameters.slug }}
 
     - id: publish
       name: Publish
@@ -65,7 +64,7 @@ spec:
         allowedHosts:
           - github.com
         description: This is ${{ parameters.name }}
-        repoUrl: github.com?owner=cedadev&repo=${{ parameters.repositoryName }}
+        repoUrl: github.com?owner=cedadev&repo=${{ parameters.slug }}
         defaultBranch: main
 
     - id: register
