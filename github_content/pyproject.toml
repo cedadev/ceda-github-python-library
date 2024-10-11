@@ -82,10 +82,9 @@ module = "${{ values.mccabeCodeQuality }}"
 
 [tool.bandit]
 skips = ${{ values.banditSkips | dump }}
-# can alternatively be formatted as [${{ values.banditSkips }}]
 
 [tool.quality.audit]
-ignore-code = ["CVE-2019-8341"]
+ignore-code = ${{ values.banditSkips | dump }}
 
 [build-system]
 requires = ["poetry-core"]
