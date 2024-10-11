@@ -3,7 +3,7 @@ name = "${{ values.name }}"
 version = "0.0.0dev0"
 description = "${{ values.description }}"
 authors = [
-    "${{ values.gitAuthorName }} <${{ values.gitAuthorEmail }}>"
+    "${{ values.gitAuthorName }}"
 ]
 readme = "README.md"
 

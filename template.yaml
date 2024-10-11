@@ -145,6 +145,13 @@ spec:
         repoUrl: github.com?owner=cedadev&repo=${{ parameters.slug }}
         repoVisibility: ${{ parameters.visibility }}
         defaultBranch: main
+        homepage: https://cedadev.github.io/${{ parameters.slug }}/
+
+    - id: github-pages
+      name: Enable GitHub Pages
+      action: github:pages
+      repoUrl: github.com?owner=cedadev&repo=${{ parameters.slug }}
+      buildType: 'legacy'
 
     - id: register
       name: Register
