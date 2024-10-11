@@ -7,5 +7,5 @@ metadata:
     github.com/project-slug: cedadev/${{ values.slug }}
 spec:
   type: library
-  owner: ${{ values.author | dump }}
+  owner: user:${{ values.author.metadata.namespace }}/${{ values.author.metadata.name }}
   lifecycle: experimental
