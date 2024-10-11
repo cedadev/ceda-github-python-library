@@ -6,7 +6,7 @@ kind: Template
 metadata:
   name: ceda-github-public-python-library
   title: CEDA GitHub Public Python Library
-  description: Create a public Python library or clilent in the CEDADEV organisation
+  description: Create a public Python library or client in the CEDADEV organisation
 
 # Templated Information
 spec:
@@ -52,7 +52,6 @@ spec:
   steps:
     - id: fetch-base
       name: Fetch Base
-            name: Fetch Base
       action: fetch:template
       input:
         url: ./github_content
@@ -64,7 +63,8 @@ spec:
           repoUrl: github.com?owner=${{ parameters.owner }}&repo=${{ parameters.repositoryName }}
           description: ${{ parameters.description }}
           destination: ${{ values.repoUrl | parseRepoUrl }}
-        - id: publish
+
+    - id: publish
       name: Publish
       action: publish:github
       input:
