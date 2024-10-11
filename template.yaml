@@ -29,6 +29,7 @@ spec:
             rows: 1
         repositoryName:
           title: Repository Slug (Name)
+          type: string
           description: The slug for the repository, (i.e. "ceda-servicex-client")
           ui:options:
             rows: 1
