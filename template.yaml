@@ -4,9 +4,9 @@ kind: Template
 
 # Basic Template Information
 metadata:
-  name: ceda-github-public-python-library
-  title: CEDA GitHub Public Python Library
-  description: Create a public Python library or client in the CEDADEV organisation
+  name: ceda-github-python-library
+  title: CEDA GitHub Python Library
+  description: Create a Python library or client in the CEDADEV organisation
 
 # Templated Information
 spec:
