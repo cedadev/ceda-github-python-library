@@ -149,7 +149,7 @@ spec:
 
     - id: github-pages
       name: Enable GitHub Pages
-      action: github:pages
+      action: github:pages:enable
       repoUrl: github.com?owner=cedadev&repo=${{ parameters.slug }}
       buildType: 'legacy'
 
