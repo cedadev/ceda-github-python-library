@@ -1,7 +1,7 @@
 [tool.poetry]
-name = '${{ values.name }}'
+name = "${{ values.name }}"
 version = "0.0.0dev0"
-description = '${{ values.description }}'
+description = "${{ values.description }}"
 authors = [
     "${{ values.gitAuthorName }} <${{ values.gitAuthorEmail }}>"
 ]

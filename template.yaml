@@ -123,6 +123,8 @@ spec:
           author: ${{ user.entity }}
           description: ${{ parameters.description }}
           slug: ${{ parameters.slug }}
+          gitAuthorName: ${{ user.entity.metadata.name }}
+          gitAuthorEmail: ${{ user.entity.spec.profile.email }}
           testCoverage: ${{ parameters.testCoverage }}
           mccabeCodeQualityAverage: ${{ parameters.mccabeCodeQualityAverage }}
           mccabeCodeQualityBlock: ${{ parameters.mccabeCodeQualityBlock }}
