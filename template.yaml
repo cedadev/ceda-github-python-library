@@ -16,7 +16,6 @@ spec:
     - title: Basic Library Information
       required:
         - name
-        - owner
         - repositoryName
         - description
       properties:
@@ -34,14 +33,6 @@ spec:
           ui:options:
             rows: 1
           pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
-        owner:
-          title: Owner
-          type: string
-          description: Owner of the component; a GitHub group in the "cedadev" organisation (usually this will be "developers").
-          ui:field: OwnerPicker
-          ui:options:
-            catalogFilter:
-              kind: [ Group ]
         description:
           title: Description
           type: string
@@ -74,7 +65,7 @@ spec:
         allowedHosts:
           - github.com
         description: This is ${{ parameters.name }}
-        repoUrl: github.com?owner=${{ parameters.owner }}&repo=${{ parameters.repositoryName }}
+        repoUrl: github.com?owner=cedadev&repo=${{ parameters.repositoryName }}
         defaultBranch: main
 
     - id: register
