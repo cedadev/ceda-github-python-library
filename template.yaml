@@ -51,6 +51,66 @@ spec:
           enumNames:
             - Public (default)
             - Private (visible only to CEDADEV organisational members on github)
+    - title: Software Quality Measures
+      required:
+        - testCoverage
+        - mccabeCodeQualityAverage
+        - mccabeCodeQualityModule
+        - mccabeCodeQualityBlock
+        - banditSkips
+        - dependencySkips
+      properties:
+        testCoverage:
+          title: Test Coverage
+          description: Uses the slider to define the minimum level of test coverage. The CI pipeline will fail if your code does not reach this level.
+          type: integer
+          minimum: 0
+          maximum: 100
+          multipleOf: 5
+          default: 100
+          ui:widget: range
+
+        mccabeCodeQualityAverage:
+          title: McCabe Code Quality (minimum average for entire project)
+          description: Set the minimum cyclomatic complexity score you consider valid for your entire codebase. A-C are considered to be "good, readable code".
+          type: string
+          enum: [ A, B, C, D, E, F ]
+          default: A
+
+        mccabeCodeQualityModule:
+          title: McCabe Code Quality (minimum value for any given file)
+          description: Set the minimum cyclomatic complexity score you consider valid for any given file in your codebase. A-C are considered to be "good, readable code".
+          type: string
+          enum: [ A, B, C, D, E, F ]
+          default: A
+
+        mccabeCodeQualityBlock:
+          title: McCabe Code Quality (minimum value for any given block of code)
+          description: Set the minimum cyclomatic complexity score you consider valid for any given block (function, method, class, etc.). A-C are considered to be "good, readable code".
+          type: string
+          enum: [ A, B, C, D, E, F ]
+          default: B
+
+        banditSkips:
+          title: Allowable Bandit Exemption Rules
+          type: array
+          description: Add any Bandit security check codes which may not be valid for your project (i.e. "B703" and "B308" are common false positives in Django applications)
+          items: {
+            title: "Add error code to disable a Bandit check:",
+            type: string,
+          }
+
+        dependencySkips:
+          title: Allowable CVE Vulnerabilities
+          type: array
+          description: Add any CVE vulnerabilities that you know are false positives (for example, "CVE-2019-8341" is a known vulnerability in Jinja2 that CANNOT occur outside of web application frameworks)
+          items: {
+            title: "Add CVE codes to prevent that vulnerability stopping deployment",
+            type: string,
+            pattern: "CVE-\d{4}-\d{4,7}"
+          }
+
+
 
   # Steps undertaken by backstage after completion of the template form
   steps:
@@ -65,6 +125,12 @@ spec:
           author: ${{ user.entity }}
           description: ${{ parameters.description }}
           slug: ${{ parameters.slug }}
+          testCoverage: ${{ parameters.testCoverage }}
+          mccabeCodeQualityAverage: ${{ parameters.mccabeCodeQualityAverage }}
+          mccabeCodeQualityBlock: ${{ parameters.mccabeCodeQualityBlock }}
+          mccabeCodeQualityModule: ${{ parameters.mccabeCodeQualityModule }}
+          banditSkips: ${{ parameters.banditSkips }}
+          dependencySkips: ${{ parameters.dependencySkips }}
 
     - id: publish
       name: Publish
