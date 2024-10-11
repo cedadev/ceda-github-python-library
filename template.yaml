@@ -17,6 +17,7 @@ spec:
       required:
         - name
         - owner
+        - repositoryName
         - description
       properties:
         name:
