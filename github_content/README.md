@@ -32,6 +32,12 @@ This will activate all GitHub quality assurance, documentation and module public
 
 At this point you can commit all your changes to ensure a fully working and quality assured repository.
 
+### Activate Code Scanning on GitHub
+
+You should activate `Default` "CodeQL analysis" on GitHub at the following link:
+
+https://github.com/cedadev/${{ values.slug }}/settings/security_analysis
+
 ### Create a PyPI project
 
 Create a project on PyPI for ${{ values.slug }}, you should also set up an integration with GitHub 
