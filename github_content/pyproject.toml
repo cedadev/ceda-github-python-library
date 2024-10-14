@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "${{ values.name }}"
+name = "${{ values.slug }}"
 version = "0.0.0dev0"
 description = "${{ values.description }}"
 authors = [
@@ -76,9 +76,9 @@ branch = true
 fail_under = ${{ values.testCoverage }}
 
 [tool.quality.mccabe]
-average = "${{ values.mccabeCodeQuality }}"
-block = "${{ values.mccabeCodeQuality }}"
-module = "${{ values.mccabeCodeQuality }}"
+average = "${{ values.mccabeCodeQualityAverage }}"
+block = "${{ values.mccabeCodeQualityBlock }}"
+module = "${{ values.mccabeCodeModule }}"
 
 [tool.bandit]
 skips = ${{ values.banditSkips | dump }}
