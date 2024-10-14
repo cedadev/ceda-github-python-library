@@ -1,3 +1,36 @@
 # ${{ values.name  }}
 
 ${{ values.description }}
+
+## Getting started
+
+This Python library was created by CEDA's Backstage service, to begin working on your code you complete 
+the steps noted in this document. If you find any issues, please note them in this repo:
+
+https://github.com/cedadev/ceda-github-python-library
+
+### Install Poetry
+
+This library will use the Poetry packaging system. To install Poetry you should follow these 
+instructions: https://python-poetry.org/docs/#installation
+
+### Install all Development Libraries
+
+Run `poetry install` to collect all relevant development libraries.
+
+### Install the pre-commit hooks
+
+Run `poetry run pre-commit install` to install the pre-commit hooks into this repository.
+
+### Create a PyPI project
+
+Create a project on PyPI for ${{ values.slug }}, you should also set up an integration with GitHub 
+if you have not done so already.
+
+## Other Configurations
+
+### Check your GitHub email settings (Optional)
+
+If your GitHub account does not make one of your email addresses visible, then commits to this
+(and future) libraries made with Backstage templates will not be linked to your GitHub account. 
+Backstage will automatically collect this information periodically.

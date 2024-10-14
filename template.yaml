@@ -30,7 +30,7 @@ spec:
         slug:
           title: Repository Slug (Name)
           type: string
-          description: The slug for the repository, (i.e. "ceda-servicex-client")
+          description: The slug for the repository, (i.e. "ceda-servicex-client"), containing only dashes as separators.
           ui:options:
             rows: 1
           pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
@@ -123,6 +123,7 @@ spec:
           author: ${{ user.entity }}
           description: ${{ parameters.description }}
           slug: ${{ parameters.slug }}
+          module: ${{ parameters.slug | replace("-", "_") }}
           gitAuthorName: ${{ user.entity.metadata.name }}
           gitAuthorEmail: ${{ user.entity.spec.profile.email }}
           testCoverage: ${{ parameters.testCoverage }}
