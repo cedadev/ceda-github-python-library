@@ -84,7 +84,7 @@ block = "${{ values.mccabeCodeQualityBlock }}"
 skips = ${{ values.banditSkips | dump }}
 
 [tool.quality.audit]
-ignore-code = ${{ values.banditSkips | dump }}
+ignore-code = ${{ values.dependencySkips | dump }}
 
 [build-system]
 requires = ["poetry-core"]
