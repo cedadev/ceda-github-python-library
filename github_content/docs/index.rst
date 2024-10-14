@@ -4,9 +4,9 @@
    contain the root `toctree` directive.
 
 ${{ values.name }} documentation
-===================================
+==============================================================================
 
-.. include:: ../../README.md
+.. include:: ../README.md
 
 .. toctree::
    :maxdepth: 1
