@@ -77,8 +77,8 @@ fail_under = ${{ values.testCoverage }}
 
 [tool.quality.mccabe]
 average = "${{ values.mccabeCodeQualityAverage }}"
-block = "${{ values.mccabeCodeQualityBlock }}"
 module = "${{ values.mccabeCodeQualityModule }}"
+block = "${{ values.mccabeCodeQualityBlock }}"
 
 [tool.bandit]
 skips = ${{ values.banditSkips | dump }}
