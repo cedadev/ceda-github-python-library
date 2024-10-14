@@ -22,6 +22,13 @@ Run `poetry install` to collect all relevant development libraries.
 
 Run `poetry run pre-commit install` to install the pre-commit hooks into this repository.
 
+### Activate GitHub workflows
+
+You should change the name of the directory `.rename_github` to `.github` (note the full stops). 
+This will activate all GitHub quality assurance, documentation and module publication workflows. 
+
+At this point you can commit all your changes to ensure a fully working and quality assured repository.
+
 ### Create a PyPI project
 
 Create a project on PyPI for ${{ values.slug }}, you should also set up an integration with GitHub 
