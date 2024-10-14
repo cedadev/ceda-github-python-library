@@ -95,20 +95,20 @@ spec:
           title: Allowable Bandit Exemption Rules
           type: array
           description: Add any Bandit security check codes which may not be valid for your project (i.e. "B703" and "B308" are common false positives in Django applications)
-          items: {
-            title: "Add error code to disable a Bandit check:",
-            type: string,
-          }
+          items:
+            title: "Add error code to disable a Bandit check:"
+            type: string
 
         dependencySkips:
           title: Allowable CVE Vulnerabilities
           type: array
           description: Add any CVE vulnerabilities that you know are false positives (for example, "CVE-2019-8341" is a known vulnerability in Jinja2 that CANNOT occur outside of web application frameworks)
-          items: {
-            title: "Add CVE codes to prevent that vulnerability stopping deployment",
-            type: string,
-            pattern: "^CVE-/d{4}-/d{4,7}$",
-          }
+          items:
+            title: "Add CVE codes to prevent that vulnerability stopping deployment"
+            type: string
+            pattern: "^CVE-\d{4}-\d{4,7}$"
+          default:
+            - CVE-2019-8341
 
   # Steps undertaken by backstage after completion of the template form
   steps:
@@ -129,8 +129,8 @@ spec:
           gitAuthorEmail: ${{ user.entity.spec.profile.email }}
           testCoverage: ${{ parameters.testCoverage }}
           mccabeCodeQualityAverage: ${{ parameters.mccabeCodeQualityAverage }}
-          mccabeCodeQualityBlock: ${{ parameters.mccabeCodeQualityBlock }}
           mccabeCodeQualityModule: ${{ parameters.mccabeCodeQualityModule }}
+          mccabeCodeQualityBlock: ${{ parameters.mccabeCodeQualityBlock }}
           banditSkips: ${{ parameters.banditSkips }}
           dependencySkips: ${{ parameters.dependencySkips }}
 
