@@ -8,10 +8,10 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath("../.."))
+sys.path.insert(0, os.path.abspath(".."))
 
 project = "${{ values.name }}"
-copyright = "2024, ${{ values.gitAuthorName }}"
+copyright = "2024, (C) Science and Technology Facilities Council"
 author = "${{ values.gitAuthorName }}"
 release = "0.0.0dev0"
 
