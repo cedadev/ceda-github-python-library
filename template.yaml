@@ -124,6 +124,7 @@ spec:
           description: ${{ parameters.description }}
           slug: ${{ parameters.slug }}
           module: ${{ parameters.slug | replace("-", "_") }}
+          moduleLength: ${{ parameters.slug | length }}
           gitAuthorName: ${{ user.entity.metadata.name }}
           gitAuthorEmail: ${{ user.entity.spec.profile.email }}
           testCoverage: ${{ parameters.testCoverage }}

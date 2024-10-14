@@ -16,7 +16,10 @@ instructions: https://python-poetry.org/docs/#installation
 
 ### Install all Development Libraries
 
-Run `poetry install` to collect all relevant development libraries.
+Run `poetry install` to collect all relevant development libraries and create your `poetry.lock` file. 
+Alternatively you can run `poetry lock` which will a `poetry.lock`.
+
+In both cases this lock file should be commited.
 
 ### Install the pre-commit hooks
 

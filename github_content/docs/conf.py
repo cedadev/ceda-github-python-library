@@ -36,5 +36,5 @@ html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 
 # Autoapi Configuration
-autoapi_dirs = ["../${{ values.slug }}"]
+autoapi_dirs = ["../${{ values.module }}"]
 master_doc = "index"
