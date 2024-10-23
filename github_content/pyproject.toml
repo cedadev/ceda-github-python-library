@@ -8,7 +8,7 @@ authors = [
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=${{ values.pythonVersions | min }},<=${{ values.pythonVersions | max }}"
+python = ">=${{ values.pythonVersions | first }},<=${{ values.pythonVersions | last }}"
 pydantic-settings = "^2.3.4"
 stac-pydantic = "^3.1.1"
 
