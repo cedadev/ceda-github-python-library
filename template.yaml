@@ -131,7 +131,7 @@ spec:
             pattern: ^CVE-\d{4}-\d{4,7}$
           default:
             - CVE-2019-8341
-            -
+
         strictTypeChecking:
           title: Enable MyPy's Strict Mode
           description: Strict Type Checking will greatly enhance your code's security and is strongly encouraged.
