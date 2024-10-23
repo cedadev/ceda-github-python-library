@@ -5,6 +5,7 @@ metadata:
   description: ${{ values.description | dump }}
   annotations:
     github.com/project-slug: cedadev/${{ values.slug }}
+    backstage.io/source-template: template:default/ceda-github-python-library
 spec:
   type: library
   owner: user:${{ values.author.metadata.namespace }}/${{ values.author.metadata.name }}
