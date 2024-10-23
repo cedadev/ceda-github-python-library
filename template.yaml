@@ -14,6 +14,7 @@ spec:
   type: library
   parameters:
     - title: Basic Library Information
+      description: Please enter the basic information about your new repository on GitHub/cedadev
       required:
         - name
         - slug
@@ -51,6 +52,23 @@ spec:
           enumNames:
             - Public (default)
             - Private (visible only to CEDADEV organisational members on github)
+    - title: CEDA Ecosystem
+      description: Please describe how this new library fits into the CEDA softwre ecosystem
+      required:
+        - domains
+      properties:
+        domains:
+          title: CEDA Software Domain(s)
+          description: |
+            All CEDA software exists in one or more domains. Please select the domain(s) that this library 
+            applies to. If a suitable domain doesn't exist yet please add it in the ceda-backstage-catalog repo in GitHub/cedadev.
+          type: array
+          items:
+            type: string
+          ui:field: MultiEntityPicker
+          ui:options:
+            catalogFilter:
+              - kind: Domain
     - title: Software Quality Measures
       required:
         - testCoverage
@@ -96,19 +114,52 @@ spec:
           type: array
           description: Add any Bandit security check codes which may not be valid for your project (i.e. "B703" and "B308" are common false positives in Django applications)
           items:
-            title: "Add error code to disable a Bandit check:"
+            title: "Add error code to disable a Bandit check"
             type: string
 
         dependencySkips:
           title: Allowable CVE Vulnerabilities
           type: array
-          description: Add any CVE vulnerabilities that you know are false positives (for example, "CVE-2019-8341" is a known vulnerability in Jinja2 that CANNOT occur outside of web application frameworks)
+          description: |
+            Add any CVE vulnerabilities that you know are false positives (for example, 
+            "CVE-2019-8341" is a known vulnerability in Jinja2 that CANNOT occur outside of 
+            web application frameworks), but is required by our build software. 
+            It is included here by default.
           items:
-            title: "Add CVE codes to prevent that vulnerability stopping deployment"
+            title: "Add known / allowable CVE issues for this library"
             type: string
             pattern: ^CVE-\d{4}-\d{4,7}$
           default:
             - CVE-2019-8341
+            -
+        strictTypeChecking:
+          title: Enable MyPy's Strict Mode
+          description: Strict Type Checking will greatly enhance your code's security and is strongly encouraged.
+          type: boolean
+          default: true
+
+        strictImportChecking:
+          title: Enable MyPy's import checking
+          description: |
+            Import checking will prevent you fomr using libraries which are not statically type annotated, 
+            this is a powerful feature but it will break for many 3rd party libraries.
+          type: boolean
+          default: false
+
+        pythonVersions:
+          title: Supported Python Versions
+          description: Deselect the versions of python you do not wish to support
+          type: array
+          items:
+            title: Supported Python Version
+            type: string
+            pattern: ^3\.[0-9]\{1,2}$
+          default:
+            - "3.9"
+            - "3.10"
+            - "3.11"
+            - "3.12"
+            - "3.13"
 
   # Steps undertaken by backstage after completion of the template form
   steps:
@@ -127,12 +178,16 @@ spec:
           moduleLength: ${{ parameters.slug | length }}
           gitAuthorName: ${{ user.entity.metadata.name }}
           gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+          domains: ${{ parameters.domains }}
           testCoverage: ${{ parameters.testCoverage }}
           mccabeCodeQualityAverage: ${{ parameters.mccabeCodeQualityAverage }}
           mccabeCodeQualityModule: ${{ parameters.mccabeCodeQualityModule }}
           mccabeCodeQualityBlock: ${{ parameters.mccabeCodeQualityBlock }}
           banditSkips: ${{ parameters.banditSkips }}
           dependencySkips: ${{ parameters.dependencySkips }}
+          strictTypeChecking: ${{ parameters.strictTypeChecking }}
+          ignoreStrictImportChecking: ${{ not parameters.strictImportChecking }}
+          pythonVersions: ${{ parameters.pythonVersions }}
 
     - id: publish
       name: Publish

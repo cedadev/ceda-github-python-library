@@ -8,7 +8,7 @@ authors = [
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = "${{ values.pythonVersions | join(',') }}"
 pydantic-settings = "^2.3.4"
 stac-pydantic = "^3.1.1"
 
@@ -50,8 +50,8 @@ sphinx-mdinclude = "^0.6.2"
 plugins = [
     "pydantic.mypy"
 ]
-strict = true
-ignore_missing_imports = true
+strict = ${{ values.strictTypeChecking }}
+ignore_missing_imports = ${{ values.ignoreStrictImportChecking }}
 python_version = "3.9"
 
 [tool.isort]
