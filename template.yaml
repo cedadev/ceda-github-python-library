@@ -53,7 +53,7 @@ spec:
             - Public (default)
             - Private (visible only to CEDADEV organisational members on github)
     - title: CEDA Ecosystem
-      description: Please describe how this new library fits into the CEDA softwre ecosystem
+      description: Please describe how this new library fits into the CEDA software ecosystem
       required:
         - domains
       properties:
@@ -139,7 +139,7 @@ spec:
           default: true
 
         strictImportChecking:
-          title: Enable MyPy's import checking
+          title: Enable MyPy's strict import checking
           description: |
             Import checking will prevent you fomr using libraries which are not statically type annotated, 
             this is a powerful feature but it will break for many 3rd party libraries.
@@ -153,7 +153,7 @@ spec:
           items:
             title: Supported Python Version
             type: string
-            pattern: ^3\.[0-9]\{1,2}$
+            pattern: ^3\.[0-9]{1,2}$
           default:
             - "3.9"
             - "3.10"
