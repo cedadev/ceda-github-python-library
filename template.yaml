@@ -132,6 +132,18 @@ spec:
           default:
             - CVE-2019-8341
 
+        linterRules:
+          title: Ruff linter rules
+          type: array
+          description: |
+            Add any Ruff linter rules to be applied to your code. Buy default this template will apply 
+            ALL rules, but this can be removed here. A less restrictive set of rules would be "F" and "E".
+          items:
+            title: "Add a Ruff linter rule"
+            type: string
+          default:
+            - "ALL"
+
         strictTypeChecking:
           title: Enable MyPy's Strict Mode
           description: Strict Type Checking will greatly enhance your code's security and is strongly encouraged.
@@ -185,6 +197,7 @@ spec:
           mccabeCodeQualityBlock: ${{ parameters.mccabeCodeQualityBlock }}
           banditSkips: ${{ parameters.banditSkips }}
           dependencySkips: ${{ parameters.dependencySkips }}
+          linterRules: ${{ parameters.linterRules }}
           strictTypeChecking: ${{ parameters.strictTypeChecking }}
           ignoreStrictImportChecking: ${{ not parameters.strictImportChecking }}
           pythonVersions: ${{ parameters.pythonVersions }}
