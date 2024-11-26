@@ -67,6 +67,7 @@ target-version = "py39"
 
 [tool.ruff.lint]
 select = ${{ values.linterRules | dump }}
+ignore = ${{ values.linterIgnores | dump }}
 
 [tool.ruff.format]
 docstring-code-format = true
