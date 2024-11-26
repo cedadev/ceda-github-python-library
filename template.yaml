@@ -133,7 +133,7 @@ spec:
             - CVE-2019-8341
 
         linterRules:
-          title: Ruff linter rules
+          title: Applied Ruff linter rules
           type: array
           description: |
             Add any Ruff linter rules to be applied to your code. Buy default this template will apply 
@@ -143,6 +143,22 @@ spec:
             type: string
           default:
             - "ALL"
+
+        linterIgnores:
+          title: Ignored Ruff linter rules
+          type: array
+          description: |
+            Add any Ruff linter rules which will be ignored (regardless of select "ALL" rules in the previous 
+            section. The ignored rules here are selected because they contradict other rules.
+          items:
+            title: "Ignore a Ruff linter rule"
+            type: string
+          default:
+            - D200
+            - D212
+            - D400
+            - D401
+            - D415
 
         strictTypeChecking:
           title: Enable MyPy's Strict Mode
@@ -198,6 +214,7 @@ spec:
           banditSkips: ${{ parameters.banditSkips }}
           dependencySkips: ${{ parameters.dependencySkips }}
           linterRules: ${{ parameters.linterRules }}
+          linterIgnores: ${{ parameters.linterIgnores }}
           strictTypeChecking: ${{ parameters.strictTypeChecking }}
           ignoreStrictImportChecking: ${{ not parameters.strictImportChecking }}
           pythonVersions: ${{ parameters.pythonVersions }}
