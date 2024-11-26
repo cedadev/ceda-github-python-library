@@ -65,6 +65,9 @@ line-length = 88
 indent-width = 4
 target-version = "py39"
 
+[tool.ruff.lint]
+select = ${{ values.linterRules | dump }}
+
 [tool.ruff.format]
 docstring-code-format = true
 indent-style = "space"
